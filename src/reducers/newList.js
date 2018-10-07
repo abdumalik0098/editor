@@ -1,19 +1,24 @@
-import {ADD_TODO} from "../actions/types";
+import {ADD_TODO, TOGGLE_TODO} from "../actions/types";
 
 
-const newList = (state = [], action) =>{
+const todos = (state = [], action) =>{
    switch (action.type) {
        case ADD_TODO:
            return [...state,
                {
                 id: action.id,
                 text: action.text,
-                completed: false
+                completed: true
                }
            ];
+       case TOGGLE_TODO:
+           if (state.id !== action.id) {
+               return state
+           }
+
        default:
            return state;
    }
 } ;
 
-export default newList;
+export default todos;
